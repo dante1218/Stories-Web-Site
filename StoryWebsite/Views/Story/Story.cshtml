@@ -1,0 +1,65 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@model IEnumerable<StoryWebsite.Models.Story>
+
+@{
+    ViewData["Title"] = "Story";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+<h1>Story List</h1>
+<br>
+
+<hr>
+
+<br>
+
+<div class="homeList">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <button id="addNew">@Html.ActionLink("+ Add New Story", "Create", "Story", new { id = @UserManager.GetUserId(User) })</button>
+    }
+    <br />
+    <br />
+    <table>
+        <tr>
+            <th style="padding-right:30px">Author</th>
+            <th style="padding-right:30px">Title</th>
+            <th style="padding-right:30px">View Story</th>
+            <th style="padding-right:30px">Edit</th>
+            <th style="padding-right:30px">Delete</th>
+        </tr>
+        @foreach (var story in Model)
+        {
+            <tr>
+                <td class="lab-list" style="padding-right:30px">@story.AppUser.UserName</td>
+                <td style="padding-right:30px">@story.Title</td>
+                @if (string.Compare(@story.Private, "1") == 0 || string.Compare(UserManager.GetUserId(User), @story.AppUser.Id) == 0 || ViewContext.HttpContext.User.IsInRole("Admin"))
+                {
+                    <td class="lab-list"><button id="detail">@Html.ActionLink("View Story", "View", "Slides", new { id = story.StoryId })</button></td>
+                }
+                else
+                {
+                    <td>Private Story</td>
+                }
+                @if (string.Compare(UserManager.GetUserId(User), @story.AppUser.Id) == 0 || ViewContext.HttpContext.User.IsInRole("Admin"))
+                {
+                    <td class="lab-list"><button id="edit">@Html.ActionLink("Edit", "Edit", new { id = story.StoryId })</button></td>
+                    <td class="lab-list"><button id="delete">@Html.ActionLink("Delete", "Delete", new { id = story.StoryId })</button></td>
+                }
+                else
+                {
+                    <td>Invisible</td>
+                    <td>Invisible</td>
+                }
+            </tr>
+        }
+    </table>
+</div>
+<br>
+<hr>
+<div>
+    @Html.ActionLink("Back", "Index", "Home")
+</div>

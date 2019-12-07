@@ -1,0 +1,21 @@
+
+void print() {
+	cout<<content;
+}
+
+void some(const myClass& sth){
+	sth.print();
+}
+
+//this will not work because sth is const
+
+
+void print() const {
+	cout<<content;
+}
+
+void some(const myClass& sth){
+	sth.print();
+}
+
+//now this can work

@@ -1,0 +1,73 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@model StoryWebsite.Models.AppUser
+
+@{
+    ViewData["Title"] = "UserDetails";
+}
+
+<h1>User Detail</h1>
+
+<div>
+    <hr />
+    <div class="homeList">
+        <table>
+            <tr>
+                <td><div style="padding-right:30px">Name: @Html.DisplayFor(model => model.UserName)</div></td>
+                <td><div style="padding-right:30px">Email: @Html.DisplayFor(model => model.Email)</div></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<h4 style="margin-bottom: 10px;">Story List</h4>
+<div class="homeList">
+    <table>
+        @foreach (var st in Model.Stories)
+        {
+            <tr>
+                <td>
+                    Title: @Html.Label(st.Title)
+                </td>
+                <td>
+                    @if (st.Private == "0")
+                    {
+                        <span>Private</span>
+                    }
+                    else
+                    {
+                        <span>Public</span>
+                    }
+                </td>
+                <td>
+                    <button id="detail">@Html.ActionLink("Detail", "Detail", "Story", new { id = st.StoryId })</button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div style="height: 10px;"></div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+@if (ViewContext.HttpContext.User.IsInRole("Admin"))
+{
+    <div style="padding:0" class="homeList"><button id="delete">@Html.ActionLink("Manage All User Account", "AppUser")</button></div>
+}
+<hr>
+<div>
+    @Html.ActionLink("Back", "AppUser") |
+    @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) <span>|</span>
+    }
+    @if (string.Compare(UserManager.GetUserId(User), Model.Id) == 0 || ViewContext.HttpContext.User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) <span>|</span>
+        @Html.ActionLink("Add New Story", "Create", "Story", new { id = Model.Id })
+    }
+
+</div>

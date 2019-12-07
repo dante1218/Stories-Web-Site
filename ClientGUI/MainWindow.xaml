@@ -1,0 +1,147 @@
+﻿<Window x:Class="ClientGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientGUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="800">
+    <TabControl FontFamily="tahoma" FontWeight="Bold" FontSize="16" Background="#d3d3d3">
+        <TabItem Header="Create Story" Padding="10 5">
+            <Grid Height="432" VerticalAlignment="Top" Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <Grid x:Name="StoryUserId" x:FieldModifier="public" Margin="0" Grid.ColumnSpan="2" RenderTransformOrigin="1.09,0.11">
+                    <Label Content="Enter User ID:" Margin="103,34,519,31"/>
+                    <TextBox x:Name="StoryUserIdBox" TextChanged="StoryUserTextChanged" Margin="272,34,196,31"/>
+                </Grid>
+                <Grid x:Name="StoryTitle_Grid" x:FieldModifier="public" Margin="0" Grid.ColumnSpan="2" RenderTransformOrigin="1.09,0.11">
+                    <Label Content="Enter Title:" Margin="101,134,521,-69"/>
+                    <TextBox x:Name="StoryTitleBox" TextChanged="StoryUserTextChanged" Margin="270,134,198,-69"/>
+                </Grid>
+                <Grid x:Name="StoryPrivate" x:FieldModifier="public" Margin="0" Grid.ColumnSpan="2" RenderTransformOrigin="1.09,0.11">
+                    <Label Content="Enter Accessibility:" Margin="95,226,519,-161"/>
+                    <TextBox x:Name="StoryPrivateBox" TextChanged="StoryUserTextChanged" Margin="272,226,196,-161"/>
+                </Grid>
+                <Grid x:Name="Create_Grid" x:FieldModifier="public" Margin="0,0,14,0">
+                    <Button x:Name="StoryCreate" Content="Create Request" Click="CreateStoryRequest" Margin="309,364,302,-316" Height="53" VerticalAlignment="Top"/>
+                </Grid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Replace Story" Padding="10 5">
+            <Grid Height="432" VerticalAlignment="Top" Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <Grid x:Name="ReplaceStoryId" x:FieldModifier="public" Margin="0" Grid.ColumnSpan="2" RenderTransformOrigin="1.09,0.11">
+                    <Label Content="Enter Story ID:" Margin="103,34,519,31"/>
+                    <TextBox x:Name="ReplaceStoryIdBox" TextChanged="ReplaceTextChanged" Margin="272,34,196,31"/>
+                </Grid>
+                <Grid x:Name="ReplaceTitle" x:FieldModifier="public" Margin="0" Grid.ColumnSpan="2" RenderTransformOrigin="1.09,0.11">
+                    <Label Content="Enter Title:" Margin="101,134,521,-69"/>
+                    <TextBox x:Name="ReplaceTitleBox" TextChanged="ReplaceTextChanged" Margin="270,134,198,-69"/>
+                </Grid>
+                <Grid x:Name="ReplacePrivate" x:FieldModifier="public" Margin="0" Grid.ColumnSpan="2" RenderTransformOrigin="1.09,0.11">
+                    <Label Content="Enter Accessibility:" Margin="95,226,519,-161"/>
+                    <TextBox x:Name="ReplacePrivateBox" TextChanged="ReplaceTextChanged" Margin="272,226,196,-161"/>
+                </Grid>
+                <Grid x:Name="Replace_Story_Grid" x:FieldModifier="public" Margin="0,0,14,0">
+                    <Button x:Name="ReplaceStory" Content="Replace Request" Click="ReplaceStoryRequest" Margin="309,364,302,-316" Height="53" VerticalAlignment="Top"/>
+                </Grid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Upload Slide" Padding="10 5">
+            <Grid Height="432" VerticalAlignment="Top" Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <Grid x:Name="StoryId" x:FieldModifier="public" Margin="0" Grid.ColumnSpan="2" RenderTransformOrigin="1.09,0.11">
+                    <Label Content="Enter Story ID:" Margin="44,34,602,31"/>
+                    <TextBox x:Name="StoryIdBox" TextChanged="StoryTextChanged" Margin="208,34,260,31"/>
+                </Grid>
+                <Grid x:Name="StoryImage" x:FieldModifier="public" Margin="0,0,14,0">
+                    <Label Content="Enter Image Path:" Margin="36,142,573,-74" RenderTransformOrigin="0.858,0.449"/>
+                    <TextBox x:Name="StoryImageBox" TextChanged="StoryTextChanged" Margin="204,136,166,-74"/>
+                    <Button Content="Browse" Margin="611,136,57,-74" Click="StoryFindImage" RenderTransformOrigin="0.5,0.5"/>
+                </Grid>
+                <Grid x:Name="StoryText" x:FieldModifier="public" Margin="0,0,14,0">
+                    <Label Content="Enter Text Content:" Margin="34,223,570,-159"/>
+                    <TextBox x:Name="StoryTextBox" TextChanged="StoryTextChanged" Margin="207,223,64,-245"/>
+                </Grid>
+                <Grid x:Name="Upload_Grid" x:FieldModifier="public" Margin="0,0,14,0">
+                    <Button x:Name="Upload" Content="Upload Request" Click="UploadRequest" Margin="309,364,302,-316" Height="53" VerticalAlignment="Top"/>
+                </Grid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Replace Slide" Padding="10 5">
+            <Grid Height="432" VerticalAlignment="Top" Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <Grid x:Name="SlideId" x:FieldModifier="public" Margin="0" Grid.ColumnSpan="2">
+                    <Label Content="Enter Slide ID:" Margin="56,35,578,31"/>
+                    <TextBox x:Name="SlideIdBox" TextChanged="SlideTextChanged" Margin="208,35,377,31"/>
+                </Grid>
+                <Grid x:Name="SlideImage" x:FieldModifier="public" Margin="0,0,14,0">
+                    <Label Content="Enter Image Path:" Margin="36,142,573,-74" RenderTransformOrigin="0.858,0.449"/>
+                    <TextBox x:Name="SlideImageBox" TextChanged="SlideTextChanged" Margin="204,136,166,-74"/>
+                    <Button Content="Browse" Margin="611,136,57,-74" Click="SlideFindImage" RenderTransformOrigin="0.5,0.5"/>
+                </Grid>
+                <Grid x:Name="SlideText" x:FieldModifier="public" Margin="0,0,14,0">
+                    <Label Content="Enter Text Content:" Margin="26,223,570,-159"/>
+                    <TextBox x:Name="SlideTextBox" TextChanged="SlideTextChanged" Margin="207,223,64,-245"/>
+                </Grid>
+                <Grid x:Name="Replace_Grid" x:FieldModifier="public" Margin="0,0,14,0">
+                    <Button x:Name="Replace" Content="Replace Request" Click="ReplaceRequest" Margin="309,364,302,-316" Height="53" VerticalAlignment="Top"/>
+                </Grid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Delete Story" Padding="10 5">
+            <Grid Height="432" VerticalAlignment="Top" Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <Grid x:Name="DeleteStoryId" x:FieldModifier="public" Margin="0" Grid.ColumnSpan="2" RenderTransformOrigin="1.09,0.11">
+                    <Label Content="Enter Story ID:" Margin="92,134,538,-69"/>
+                    <TextBox x:Name="DeleteStoryIdBox" TextChanged="DeleteStoryTextChanged" Margin="305,134,163,-69"/>
+                </Grid>
+                <Grid x:Name="Delete_Story_Grid" x:FieldModifier="public" Margin="0,0,14,0">
+                    <Button x:Name="DeleteStory" Content="Delete Request" Click="DeleteStoryRequest" Margin="307,250,304,-198" Height="49" VerticalAlignment="Top"/>
+                </Grid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Delete Slide" Padding="10 5">
+            <Grid Height="432" VerticalAlignment="Top" Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <Grid x:Name="DeleteSlideId" x:FieldModifier="public" Margin="0" Grid.ColumnSpan="2">
+                    <Label Content="Enter Slide ID:" Margin="96,135,542,-69"/>
+                    <TextBox x:Name="DeleteSlideIdBox" TextChanged="DeleteSlideTextChanged" Margin="301,135,165,-69"/>
+                </Grid>
+                <Grid x:Name="Delete_Slide_Grid" x:FieldModifier="public" Margin="0,0,14,0">
+                    <Button x:Name="DeleteSlide" Content="Delete Request" Click="DeleteSlideRequest" Margin="307,302,304,-250" Height="49" VerticalAlignment="Top"/>
+                </Grid>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</Window>

@@ -1,0 +1,34 @@
+﻿@model StoryWebsite.Models.AppUser
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+@{
+    ViewData["Title"] = "UserEdit";
+}
+
+<h1>Edit User Profile</h1>
+
+<div>
+    <div>
+        <form asp-controller="Person" asp-action="Edit" method="post">
+            <table>
+                <tr>
+                    <td><label asp-for="UserName"></label></td>
+                    <td><input asp-for="UserName" /></td>
+                </tr>
+                <tr>
+                    <td><label asp-for="Email"></label></td>
+                    <td><input asp-for="Email" required="required" /></td>
+                </tr>
+            </table>
+            <div>
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+<div>
+    @Html.ActionLink("Back", "Detail", new { id = @Model.Id })
+</div>

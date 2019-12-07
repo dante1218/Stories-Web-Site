@@ -1,0 +1,30 @@
+﻿@model StoryWebsite.Controllers.RegisterViewModel
+
+<h4>The password validition is not done at this time, so please note that the password must be 8 characters long, one lowcase letter, one uppercase letter, and one special character.</h4>
+<div>
+    <div>
+        <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+            <table>
+                <tr>
+                    <td><label asp-for="Email"></label></td>
+                    <td><input asp-for="Email" /></td>
+                </tr>
+                <tr>
+                    <td><label asp-for="UserName"></label></td>
+                    <td><input asp-for="UserName" /></td>
+                </tr>
+                <tr>
+                    <td><label asp-for="Password"></label></td>
+                    <td><input asp-for="Password" required="required" /></td>
+                </tr>
+                <tr>
+                    <td><label asp-for="ConfirmPassword"></label></td>
+                    <td><input asp-for="ConfirmPassword" required="required" /></td>
+                </tr>
+            </table>
+            <div>
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+Construct Mvc-Skeleton application
+==================================
+ 1. create Mvc-Skeleton folder
+ 2. in that folder: dotnet new web
+ 3. Rename the project MvcSkeleton
+ 4. Double-click on the project
+    - that starts Visual Studio and makes a solution with the MvcSkeleton as its only project
+ ---- Add Controllers Folder with Home Controller ----
+ 5. Right-click on the project > Add > New Folder > name folder "Controllers"
+ 6. Right-click on the folder > Add > New Class > name class HomeController.cs
+ 7. In that file add: using Microsoft.AspNetCore.Mvc;
+ 8. Add a public method named index that returns a string "index invoked in HomeController"
+ ---- Add Mvc service ----
+ 9. In Startup.cs add services.Mvc() to the Startup.ConfigureServices method
+10. In Startup.cs add app.UseMvcWithDefaultRoute(); in Startup.Configure
+11. Start the application and you will see the default browser started and the index method response
+    - the default route is localhost:44348/Home/index, so you don't need to supply /Home/index
+12. Replace app.UseMvcWithDefaultRoute() with the equivalent:
+      app.UseMvc(routes =>
+      {
+        routes.MapRoute(
+          name: "default",
+          template: "{Controller=Home}/{action=Index}/{id?}"
+        );
+      });
+13. Rerun the application to see that you get the same result.
+---- Add Course Controller and Model
+14. Right-click on the Controllers folder and select Add > Controller > Mvc - Controller empty
+15. Right-click on the Project and select Add > New Folder > rename to Models
+16. Define a Course class and a CoursesList class
+---- Add an Index View to show all courses in list ----
+17. Right-Click on Project and add Views folder
+18. Right-Click on Views folder and add Course folder
+19. Right-Click on Views\Course folder and Add View with Name of Index and Template List
+20. Edit Index View to show courses and provide links for Edit, Details, and Delete

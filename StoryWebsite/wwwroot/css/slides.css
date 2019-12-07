@@ -1,0 +1,45 @@
+
+body {
+   font-family: Tahoma;
+}
+
+.slideItem {
+  display: none
+}
+
+.slideShow {
+  width:90%;
+  position: relative;
+  margin: auto;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  color: #000;
+  font-weight: bold;
+  font-size: 30px;
+  transition: 0.6s ease;
+  user-select: none;
+  margin: -50px;
+  display: block;
+}
+
+.next {
+  right: 0;
+}
+
+.prev:hover, .next:hover {
+  background-color: #dc6a32;
+  color:#FFF;
+}
+
+.slideItem img{
+
+  vertical-align: middle;
+  display:block;
+  margin:auto;
+}
+

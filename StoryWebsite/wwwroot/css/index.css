@@ -1,0 +1,188 @@
+﻿body {
+    font-family: Tahoma;
+}
+
+.bodyDiv {
+    margin: 3% 5%;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+
+nav ul {
+    list-style-type: none;
+    margin: -10px;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    background-color: #D44500;
+}
+
+.menu-left {
+    float: left;
+}
+
+nav .menu-right {
+    float: right;
+}
+
+nav li a {
+    display: block;
+    color: #FFF;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+    nav li a:hover:not(.active) {
+        background-color: #943000;
+    }
+
+nav .logout {
+    background-color: #D44500;
+    color: white;
+    border: none;
+    padding: 15px 16px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+    nav .logout:hover {
+        background-color: #943000;
+    }
+
+.homeList {
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.homeList table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.homeList th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+.homeList tr:nth-child(even) {
+    background-color: #f6d9cc;
+}
+
+.homeList th {
+    background-color: #dc6a32;
+    color: white;
+}
+
+.homeList button {
+    border: transparent;
+    padding: 5px 12px;
+    color: #FFF;
+    border-radius: 4px;
+}
+
+#detail {
+    background: #0078e7;
+}
+
+#edit {
+    background: #228B22;
+}
+
+#delete {
+    background: rgb(202, 60, 60);
+}
+
+#addNew {
+    background: #008000;
+}
+
+.homeList a:link {
+    color: white;
+}
+
+.homeList a:visited {
+    color: white;
+}
+
+.homeList a:hover {
+    color: white;
+}
+
+.homeList a:active {
+    color: white;
+}
+
+.create-container {
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+}
+
+input[type=text], input[type=password], input[type=email] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin-top: 20px;
+    
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.index-register {
+    background-color: rgb(202, 60, 60);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 8px 10px 12px 10px;
+    display: inline;
+}
+
+.index-visit {
+    background-color: #0078e7;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 8px 10px 12px 10px;
+    display: inline;
+}
+
+.index-visit a:visited {
+    color: #FFF;
+}
+
+.index-register a:visited {
+    color: #FFF;
+}

@@ -1,0 +1,74 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@model StoryWebsite.Models.Story
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "StoryDetail";
+}
+
+<h1>Story Detail</h1>
+<br>
+
+<hr>
+
+<br>
+
+<div class="homeList">
+    <table>
+        <tr>
+            <th style="padding-right:30px">Story Attribute</th>
+            <th style="padding-right:30px">Value</th>
+        </tr>
+        <tr>
+            <td>Story Id:</td>
+            <td>@Model.StoryId</td>
+        </tr>
+        <tr>
+            <td>Story Title:</td>
+            <td>@Model.Title</td>
+        </tr>
+        <tr>
+            <td>Story accessibility:</td>
+            @if (Model.Private == "0")
+            {
+                <td>Private</td>
+            }
+            else
+            {
+                <td>Public</td>
+            }
+        </tr>
+    </table>
+</div>
+@*<h4 style="margin-bottom: 10px;">Slides List</h4>
+<div class="homeList">
+    <table>
+        @foreach (var st in Model.Images)
+        {
+            <tr>
+                <td>
+                    Slide Number: @st.OrderNumber
+                </td>
+                <td>Slide Content: @st.Text</td>
+                <td>Slide Content: @st.ImageURL</td>
+                <td>
+                    <button id="detail">@Html.ActionLink("Detail", "Detail", "Slide", new { id = st.SlideId })</button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>*@
+<br>
+<hr />
+<div>
+    @Html.ActionLink("Back", "Story") |
+    @if (string.Compare(UserManager.GetUserId(User), Model.UserId) == 0 || ViewContext.HttpContext.User.IsInRole("Admin"))
+    {
+
+        @Html.ActionLink("Edit", "Edit", new { id = Model.StoryId }) <span>|</span>
+        @Html.ActionLink("Delete", "Delete", new { id = Model.StoryId })
+    }
+</div>
+

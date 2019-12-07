@@ -1,0 +1,119 @@
+  Command Line argument1 (server address): localhost
+
+  Command Line argument2 (server port): 8098
+
+  Command Line argument3 (server address): localhost
+
+  Command Line argument4 (server port): 8088
+
+  Command Line argument5 (folder path): "..", using it as starting path
+
+  Command Line argument6 (converted files path): "..\hostStorage", using it as to stored converted file on client machine
+
+  Command Line argument7 (pattern): ".*", using it as pattern
+
+  Command Line argument8 (Auto Test): 0 (1 for turning on, 0 for turning off)
+
+
+  using CommFactory to create instance of Comm on native heap
+
+  using CommFactory to invoke IComm::create
+  creating an instance of Comm on the native heap
+  getting message in Translater
+
+  posting message in Translater
+
+  posting message in Translater
+
+  posting message in Translater
+
+  CsMessage:
+  { dir13, FawcettPackage }
+  { to, localhost:8088 }
+  { from, localhost:8098 }
+  { dir25, Translater }
+  { dir3, ClientGUI }
+  { dir19, RegularExp }
+  { command, getDirs }
+  { dir24, test }
+  { dir2, Analysis }
+  { dir1, .vs }
+  { dir4, CodePublisher }
+  { dir22, Show }
+  { dir5, CodePublisherInterface }
+  { dir23, Storage }
+  { dir6, CommLibWrapper }
+  { dir20, Server }
+  { dir7, convertedPages }
+  { dir21, ServerPrototype }
+  { dir8, Converter }
+  { dir9, CppCommWithFileXfer }
+  { dir10, Debug }
+  { dir11, Dependencies }
+  { dir12, Display }
+  { dir14, hostStorage }
+  { dir15, hostStorage1 }
+  { dir16, hostStorage2 }
+  { dir17, Loader }
+  { dir18, PublisherFactory }
+
+  getting message in Translater
+
+  CsMessage:
+  { to, localhost:8088 }
+  { from, localhost:8098 }
+  { file4, htmlTailTemplate }
+  { command, getFiles }
+  { file5, Project4.sln }
+  { file1, clean.bat }
+  { file2, Compile.bat }
+  { file3, htmlHeaderTemplate }
+  { file6, Run.bat }
+
+  getting message in Translater
+
+  CsMessage:
+  { to, localhost:8088 }
+  { convertedList1, CsMessage.h.html }
+  { from, localhost:8098 }
+  { convertedList2, RegularExp.cpp.html }
+  { command, getConvertedList }
+  { convertedList3, RegularExp.h.html }
+  { convertedList4, Translater.cpp.html }
+  { convertedList5, Translater.h.html }
+
+  getting message in Translater
+
+  posting message in Translater
+
+  CsMessage:
+  { to, localhost:8088 }
+  { content-length, 0 }
+  { from, localhost:8098 }
+  { command, downLoadFile }
+  { file, Translater.cpp.html }
+  Display conveted file C:\Users\yishi\cse687\Project4\hostStorage\Translater.cpp.html in Browser View
+
+
+  getting message in Translater
+
+  CsMessage:
+  { to, localhost:8088 }
+  { content-length, 1024 }
+  { from, localhost:8098 }
+  { command, downLoadFile }
+  { file, Translater.cpp.html }
+
+  getting message in Translater
+
+  CsMessage:
+
+Unhandled Exception: System.Collections.Generic.KeyNotFoundException: The given key was not present in the dictionary.
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at MsgPassingCommunication.CsMessage.value(String key) in c:\users\yishi\cse687\project4\translater\csmessage.h:line 117
+   at ClientGUI.MainWindow.<processMessages>b__39_0() in C:\Users\yishi\cse687\Project4\ClientGUI\MainWindow.xaml.cs:line 170
+   at System.Threading.ThreadHelper.ThreadStart_Context(Object state)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.ThreadHelper.ThreadStart()

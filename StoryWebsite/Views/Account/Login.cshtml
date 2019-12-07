@@ -1,0 +1,31 @@
+﻿ @model StoryWebsite.Controllers.LoginViewModel
+
+<h1>Login Page</h1>
+
+<div>
+    <div>
+        <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+            <table>
+                <tr>
+                    <td><label asp-for="UserName"></label></td>
+                    <td><input asp-for="UserName" /></td>
+                </tr>
+                <tr>
+                    <td><label asp-for="Password"></label></td>
+                    <td><input asp-for="Password" required="required" /></td>
+                </tr>
+                <tr>
+                    <td class="checkbox">
+                        <label asp-for="RememberMe">
+                            <input asp-for="RememberMe" />
+                            @Html.DisplayNameFor(m => m.RememberMe)
+                        </label>
+                    </td>
+                </tr>
+            </table>
+            <div>
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>

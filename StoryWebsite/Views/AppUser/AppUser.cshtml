@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@model IEnumerable<StoryWebsite.Models.AppUser>
+
+@{
+    ViewData["Title"] = "User";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h1>User List</h1>
+<br>
+
+<hr>
+<br>
+
+<div class="homeList">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Datail</th>
+            <th>Edit</th>
+            <th>Add New Story</th>
+            @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+            {
+                <th>Delete</th>
+            }
+        </tr>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.UserName</td>
+                <td><button id="detail">@Html.ActionLink("Detail", "Detail", new { id = user.Id })</button></td>
+                @if (string.Compare(UserManager.GetUserId(User), user.Id) == 0 || ViewContext.HttpContext.User.IsInRole("Admin"))
+                {
+                    <td><button id="edit">@Html.ActionLink("Edit", "Edit", new { id = user.Id })</button></td>
+                    <td><button id="addNew">@Html.ActionLink("Add New Story", "Create", "Story", new { id = user.Id })</button></td>
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                }
+
+                @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+                {
+                    <td><button id="delete">@Html.ActionLink("Delete", "Delete", new { id = user.Id })</button></td>
+                }
+            </tr>
+        }
+    </table>
+</div>
+<br>
+<hr>
+<div>
+    @Html.ActionLink("Back", "Index", "Home")
+</div>

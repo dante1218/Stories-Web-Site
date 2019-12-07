@@ -1,0 +1,40 @@
+﻿@model StoryWebsite.Models.Comment
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+@{
+    ViewData["Title"] = "AddComment";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h1>Create New Story</h1>
+
+<div class="create-container">
+    <div>
+        <form asp-controller="Comment" asp-action="Add" method="post">
+            <table>
+                <tr style="display:none;">
+                    <td><label asp-for="CommentId"></label></td>
+                    <td><input asp-for="CommentId" /></td>
+                </tr>
+                <tr>
+                    <td><label asp-for="Title"></label></td>
+                    <td><input asp-for="Title" /></td>
+                </tr>
+                <tr>
+                    <td><label asp-for="Content"></label></td>
+                    <td><textarea asp-for="Content" rows="4" cols="50"></textarea></td>
+                </tr>
+            </table>
+            <div>
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+<div>
+    @Html.ActionLink("Back", "View", "Slides", new { id = Model.StoryId })
+
+</div>

@@ -1,0 +1,51 @@
+===============================================================
+  Application Notes
+===============================================================
+This application, WebApiLect13 contains a pair of Web Api controllers:
+  - FilesController     (demonstrated in Lecture 13)
+  - FileItemsController (earlier version demonstrated in Lecture 12)
+and two console client applications:
+  - CoreConsoleClient that builds as a dll to be run by the dotnet CLI  (demo in Lecture 13)
+  - FWConsoleClient that builds as an exe to be run from the cmd prompt (demo in Lecture 13)
+
+The Lecture 12 application used an in-memory database.  This application uses SQLExpress.
+The move from in-memory to SQL db required:
+1. changing to services.AddDbContext<FileContext>(opt =>
+                 opt.UseSqlServer(
+                 Configuration.GetConnectionString("DefaultConnection")));
+   in Startup.ConfigureServices
+2. Adding a connection string in appsettings.json.  I copied a connection string from another
+   application, then changed the database name and the GUID to a new value.  I got the new
+   value from Tools > CreateGUID > RegistryFormat.  That puts the GUID on the clipboard.  I
+   just pasted that over the GUID in the original connection string.
+3. Open Tools > Nuget package manager > Package Manager Console, then add-migration [Initial],
+   and update-database.
+That's all that was required.
+
+Next, I added the FilesController.cs
+1. Right click on the project and select Add > New Item > Web > Api Controller Class.
+2. Filled in Controller methods:
+   - FilesController(IHostingEnvironment hostingEnvironment)
+     The hostingEnvironment is injected by the runtime and provides access to wwwroot path.
+   - [HttpGet] public IEnumerable<string> Get() to get listing of files in wwwroot\FileStorage
+   - [HttpGet("{id}")] public async Task<IActionResult> Download(int id) to download file
+   - [HttpPost] public async Task<IActionResult> Upload() to upload file
+That's everything about the FilesController demonstrated in class.
+
+Finally, I added an Asp.Net Core console project, CoreConsoleClient, that builds a dll hosted by
+the dotnet CLI, and an Asp.Net Framework console project, FWConsoleClient, that builds an exe that
+executes in a cmd prompt.  The GetFileList requires extracting filenames from the Json stored in
+the HttpResponse Message body.  To do that you need to import the NewtonSoft package using the
+Nuget Package Manager > Manage Nuget Packages for Solution.
+1. Both have identical code that includes client methods:
+   - CoreConsoleClient(string url)
+   - public async Task<HttpResponseMessage> SendFile(string fileSpec) to upload a file
+   - public async Task<IEnumerable<string>> GetFileList() to get listing of files in wwwroot\FileStorage
+   - public async Task<HttpResponseMessage> GetFile(int id) to download file with index id
+   - public async Task<HttpResponseMessage> DeleteFile(int id) to delete file with index id
+     The server [HttpDelete("{id}")] public void Delete(int id) has not been implemented
+That's everything that was demonstrated in class.
+
+One final note: The return types of the Web Api Controller methods are automatically serialized into
+Json in the HttpResponse message body.  The file list gets extracted by methods provided by NewtonSoft
+package.  All the other responses are just displayed as text on the console.

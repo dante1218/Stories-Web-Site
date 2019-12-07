@@ -1,0 +1,50 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<!DOCTYPE html>
+
+@{
+    ViewData["Title"] = "layout";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/index.css" />
+    <script type="text/javascript" src="~/js/index.js"></script>
+</head>
+<body>
+    <nav>
+        <ul>
+            @if (!SignInManager.IsSignedIn(User))
+            {
+                <li class="menu-left">@Html.ActionLink("Home", "Index", "Home")</li>
+            }
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <li class="menu-left">@Html.ActionLink("Home", "Story", "Story")</li>
+                <li class="menu-right">
+                    @Html.ActionLink("Hello, " + @UserManager.GetUserName(User), "Detail", "AppUser", new { id = @UserManager.GetUserId(User) })
+                </li>
+                <li class="menu-right">
+                    <form method="post" asp-controller="Account" asp-action="Logout">
+                        <button class="logout" type="submit" value="Logout">Logout</button>
+                    </form>
+                </li>
+
+            }
+            else
+            {
+                <li class="menu-right">@Html.ActionLink("Register", "Register", "Account")</li>
+                <li class="menu-right">@Html.ActionLink("Login", "Login", "Account")</li>
+            }
+
+        </ul>
+    </nav>
+    <div class="bodyDiv">
+        @RenderBody()
+    </div>
+</body>
+</html>

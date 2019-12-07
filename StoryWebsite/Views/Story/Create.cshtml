@@ -1,0 +1,41 @@
+﻿@model StoryWebsite.Models.Story
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+@{
+    ViewData["Title"] = "StoryCreate";
+}
+
+<h1>Create New Story</h1>
+
+<div class="create-container">
+    <div>
+        <form asp-controller="Story" asp-action="Create" method="post">
+            <table>
+                <tr style="display:none;">
+                    <td><label asp-for="StoryId"></label></td>
+                    <td><input asp-for="StoryId" /></td>
+                </tr>
+                <tr>
+                    <td><label asp-for="Title"></label></td>
+                    <td><input asp-for="Title" /></td>
+                </tr>
+                <tr>
+                    <td><label asp-for="Private" value="Private/Public">Private/Public</label></td>
+                    <td>
+                        @Html.RadioButton("Private", "0", new { @checked = true }) <span>Private</span>
+                        @Html.RadioButton("Private", "1") <span>Public</span>
+                    </td>
+                </tr>
+            </table>
+            <div>
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+<div>
+    @Html.ActionLink("Back", "Story")
+</div>

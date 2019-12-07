@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@model StoryWebsite.Controllers.LoginViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1 style="text-align:center">Welocme to CSE686 Story Website</h1>
+
+<div>
+    <div>
+        <form style="margin: 0 auto; width:400px;" asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+            <table>
+                <tr>
+                    <td><label asp-for="UserName"></label></td>
+                    <td><input asp-for="UserName" /></td>
+                </tr>
+                <tr>
+                    <td><label asp-for="Password"></label></td>
+                    <td><input asp-for="Password" required="required" /></td>
+                </tr>
+                <tr>
+                    <td class="checkbox">
+                        <label asp-for="RememberMe">
+                            <input asp-for="RememberMe" />
+                            @Html.DisplayNameFor(m => m.RememberMe)
+                        </label>
+
+                    </td>
+                </tr>
+            </table>
+            <div>
+                <input style="display:inline" type="submit" value="Login" class="btn btn-default" />
+                <div class="index-register" style="margin:52px"><a>@Html.ActionLink("Register", "Register", "Account")</a></div>
+                <div class="index-visit"><a>@Html.ActionLink("View Story", "Story", "Story")</a></div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<br>
+

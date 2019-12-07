@@ -1,0 +1,38 @@
+﻿@model StoryWebsite.Models.Slide
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="create-container">
+    <div>
+        <form asp-controller="Slides" asp-action="Add" method="post" enctype="multipart/form-data">
+            <table>
+                <tr style="display:none;">
+                    <td><label asp-for="SlideId"></label></td>
+                    <td><input asp-for="SlideId" /></td>
+                </tr>
+                <tr>
+                    <td><label>Image: </label></td>
+                    <td><input type="file" name="image" /></td>
+                </tr>
+                <tr>
+                    <td><label>Text: </label></td>
+                    @*<td><input type="file" name="text" /></td>*@
+                    <td><textarea asp-for="Text" rows="4" cols="50"></textarea></td>
+                </tr>
+            </table>
+            <div>
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+<div>
+    @Html.ActionLink("Back", "View")
+</div>
+
+
+

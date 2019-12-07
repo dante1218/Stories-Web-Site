@@ -1,0 +1,122 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@model StoryWebsite.Models.Story
+
+@{
+    ViewData["Title"] = "Slides";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h4 style="text-align:center;">@(Model.Title)</h4 >
+    <br>
+    <div class="slideShow">
+        @foreach (var slide in Model.Slides)
+        {
+            <div class="slideItem">
+                @if (slide.ImageName != null)
+                {
+                    <div>
+                        <img src="~/FileStorage/@(slide.ImageName)" class="slide-image" width="900" height="600">
+                    </div>
+                }
+                <br />
+                <br />
+                @if (slide.Text != null)
+                {
+                    <div style="display: block;">
+                        @(slide.Text)
+                    </div>
+                }
+                <br />
+                <br />
+                @if (string.Compare(UserManager.GetUserId(User), Model.UserId) == 0 || ViewContext.HttpContext.User.IsInRole("Admin"))
+                {
+                    <div style="display: inline; float: right;">
+                        <span>@Html.ActionLink("Edit", "Edit", new { id = slide.SlideId }) | </span>
+                        <span>@Html.ActionLink("Add New Slide", "Add", new { id = Model.StoryId }) | </span>
+                        <span>@Html.ActionLink("Delete", "Delete", new { id = slide.SlideId })</span>
+                    </div>
+                }
+            </div>}
+        @if (Model.Slides.Count <= 0)
+        {
+            @if (string.Compare(UserManager.GetUserId(User), Model.UserId) == 0 || ViewContext.HttpContext.User.IsInRole("Admin"))
+            {
+                <br>
+                <div style="display: inline; float: right;">
+                    <span>@Html.ActionLink("Add New", "Add", new { id = Model.StoryId })</span>
+                </div>
+            }
+        }
+        <a class="prev" onclick="moveToPrevious()">&#10094;</a>
+        <a class="next" onclick="moveToNext()">&#10095;</a>
+    </div>
+    <br>
+    <hr>
+    <div style="width:90%; margin: auto;">
+        <div style="display: inline">
+            <input type="radio" name="iteration" id="manual" onclick="manualPlay()">
+            <label>Manual Play</label>
+            <input type="radio" name="iteration" id="auto" onclick="autoPlay()">
+            <label>Auto Play</label>
+            <select id="timeSelector" onchange="chagneTime()">
+                <option value="5">5 sec</option>
+                <option value="10">10 sec</option>
+                <option value="15">15 sec</option>
+                <option value="20">20 sec</option>
+            </select>
+
+            <button type="button" onclick="increaseSize()" id="increase">+</button>
+            <button type="button" onclick="decreaseSize()" id="decrease">-</button>
+        </div>
+    </div>
+
+
+    <br />
+    <br />
+    <br />
+    <hr style="height:5px; background-color: #D44500; border: 1px solid #D44500; border-radius: 5px;">
+    <div>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            @if (Model.Comments.Count <= 0)
+            {
+                <span>Be the first comment for this story!!!</span>
+            }
+
+            <div style="display: inline; float: right;">
+                <span>@Html.ActionLink("Add New Comment", "Add", "Comment", new { id = Model.StoryId })</span>
+            </div>
+        }
+    </div>
+    <div class="comments-container">
+        @foreach (var comment in Model.Comments)
+        {
+            <br>
+            <div class="comments">
+                <div class="title">
+                    <h3>@comment.Title</h3>
+                    <p>Author: @comment.UserName, Published on: @comment.CreatedAt</p>
+                </div>
+                <div class="body">
+                    <p>@comment.Content</p>
+                </div>
+                @if (string.Compare(UserManager.GetUserId(User), @comment.UserId) == 0 || ViewContext.HttpContext.User.IsInRole("Admin"))
+                {
+                    <span>@Html.ActionLink("Edit", "Edit", "Comment", new { id = comment.CommentId }) | </span>
+                    <span>@Html.ActionLink("Delete", "Delete", "Comment", new { id = comment.CommentId })</span>
+                }
+            </div>
+            <hr>
+            <br>
+        }
+    </div>
+
+    <link rel="stylesheet" type="text/css" href="~/css/slides.css" />
+    <script type="text/javascript" src="~/js/index.js"></script>
+    <script>
+    setSlidesNumber(@Model.Slides.Count());
+    setTime();
+    slideDisplay();
+    </script>
